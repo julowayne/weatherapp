@@ -8,19 +8,19 @@
       </thead>
       <tbody>
         <tr>
-          <td>07.25</td>
+          <td>{{ tomorrow }}</td>
           <td>
             <img src="../assets/cloud.png" alt="cloudy weather" />
           </td>
         </tr>
         <tr>
-          <td>07.26</td>
+          <td>{{ aftertomorrow }}</td>
           <td>
             <img src="../assets/sun.png" alt="cloudy weather" />
           </td>
         </tr>
         <tr>
-          <td>07.27</td>
+          <td>{{ nextaftertomorrow }}</td>
           <td>
             <img src="../assets/wind.png" alt="cloudy weather" />
           </td>
@@ -31,8 +31,26 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
-  name: "Forecast"
+  name: "Forecast",
+  computed: {
+    tomorrow() {
+      return moment()
+        .add(1, "days")
+        .format("dddd");
+    },
+    aftertomorrow() {
+      return moment()
+        .add(2, "days")
+        .format("dddd");
+    },
+    nextaftertomorrow() {
+      return moment()
+        .add(3, "days")
+        .format("dddd");
+    }
+  }
 };
 </script>
 
