@@ -37,7 +37,7 @@ header {
   #burger {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
   }
   #title {
     font-weight: bold;
