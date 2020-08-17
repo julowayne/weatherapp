@@ -30,7 +30,7 @@ export default {
   created() {
     fetch(
       // "http://api.openweathermap.org/data/2.5/weather?q=Houilles&appid=374f5dd6b4f601b323b685f32da6028c&units=metric"
-      `http://api.openweathermap.org/data/2.5/weather?q=Houilles&appid=${process.env.VUE_APP_OPEN_WEATHER_API}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=Houilles&appid=${process.env.VUE_APP_OPEN_WEATHER_API}&units=metric`
     )
       .then(response => response.json())
       .then(data => {
