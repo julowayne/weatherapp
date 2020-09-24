@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
     "moment": "^2.27.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
