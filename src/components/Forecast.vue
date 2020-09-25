@@ -10,7 +10,7 @@
         <tr>
           <td>{{ tomorrow }}</td>
           <td>
-            <img src="../assets/cloud.png" alt="cloudy weather" />
+            <img src="../assets/clouds.png" alt="cloudy weather" />
           </td>
         </tr>
         <tr>
@@ -38,17 +38,17 @@ export default {
     tomorrow() {
       return moment()
         .add(1, "days")
-        .format("dddd");
+        .format("dddd DD");
     },
     aftertomorrow() {
       return moment()
         .add(2, "days")
-        .format("dddd");
+        .format("dddd DD");
     },
     nextaftertomorrow() {
       return moment()
         .add(3, "days")
-        .format("dddd");
+        .format("dddd DD");
     }
   }
 };
