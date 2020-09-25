@@ -4,7 +4,10 @@
       <h1>{{ today }}</h1>
     </div>
     <div id="temp">{{ temperature }}°c {{ name }}</div>
-    <img src="../assets/sun.png" alt="cloudy weather" />
+    <img
+      :src="require(`../assets/${weather.toLowerCase()}.png`)"
+      alt="weather image"
+    />
   </div>
 </template>
 
@@ -14,10 +17,11 @@ export default {
   name: "Today",
   data: () => ({
     name: "",
-    sys: { country: "" },
+    sys: { city: "" },
     temperature: 0,
     latitude: "",
-    longitude: ""
+    longitude: "",
+    weather: ""
   }),
   methods: {
     getPosition() {
@@ -46,15 +50,16 @@ export default {
     },
     fetchData() {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&appid=${process.env.VUE_APP_OPEN_WEATHER_API}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${this.latitude}&lon=${this.longitude}&appid=${process.env.VUE_APP_OPEN_WEATHER_API}&units=metric`
       )
         .then(response => response.json())
         .then(data => {
-          this.temperature = data.main.temp_max;
+          this.temperature = Math.round(data.list[0].main.temp_max);
           this.name = data.name;
-          this.sys = data.sys.country;
+          this.sys = data.city.name;
           this.latitude = data.latitude;
           this.longitude = data.longitude;
+          this.weather = data.list[1].weather[0].main;
           console.log(data);
         });
     }
@@ -64,7 +69,28 @@ export default {
   },
   computed: {
     today() {
-      return moment().format("dddd");
+      return moment().format("dddd DD MMMM");
+    },
+    /*   getWeatherImg() {
+      if (!this.weather) {
+        return;
+      }
+
+      const weather = this.weather.toLowerCase();
+
+      return require(`../assets/${weather}.png`); // the module request
+    } */
+    getWeatherImg: function() {
+      if (this.weather === "") return null;
+      else if (this.weather === "Rain") return "rain";
+      else if (this.weather === "Thunderstorm") return "thunderstorm";
+      else if (this.weather === "Drizzle") return "drizzle";
+      else if (this.weather === "Snow") return "snow";
+      else if (this.weather === "Atmosphere") return "atmoshpere";
+      else if (this.weather === "Clear") return "clear";
+      else if (this.weather === "Clouds") return "clouds";
+
+      return "";
     }
   }
 };
@@ -82,6 +108,27 @@ export default {
   }
   img {
     margin-top: 1em;
+    &.rain {
+      content: url(../assets/rain.png);
+    }
+    &.thunderstorm {
+      content: url(../assets/thunderstorm.png);
+    }
+    &.drizzle {
+      content: url(../assets/rain.png);
+    }
+    &.snow {
+      content: url(../assets/snowflake.png);
+    }
+    &.atmoshpere {
+      content: url(../assets/atmosphere.png);
+    }
+    &.clear {
+      content: url(../assets/sun.png);
+    }
+    &.clouds {
+      content: url(../assets/clouds.png);
+    }
   }
   #temp {
     font-size: 25px;
