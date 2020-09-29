@@ -13,7 +13,7 @@
             <img src="../assets/clouds.png" alt="cloudy weather" />
           </td>
         </tr>
-        <tr>
+        <!--   <tr>
           <td>{{ aftertomorrow }}</td>
           <td>
             <img src="../assets/sun.png" alt="cloudy weather" />
@@ -24,7 +24,7 @@
           <td>
             <img src="../assets/wind.png" alt="cloudy weather" />
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
@@ -34,6 +34,9 @@
 import moment from "moment";
 export default {
   name: "Forecast",
+  props: {
+    temperature: Number
+  },
   computed: {
     tomorrow() {
       return moment()
