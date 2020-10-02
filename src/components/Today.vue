@@ -3,10 +3,10 @@
     <div>
       <h1>{{ today }}</h1>
     </div>
-    <div id="temp">{{ temperature[0] }}°c {{ city }}</div>
+    <div id="temp">{{ todayTemp }}°c {{ city }}</div>
     <div>
       <img
-        v-if="weather"
+        v-if="todayWeather"
         :src="weatherImg"
         alt="weather
       image"
@@ -21,20 +21,20 @@ export default {
   name: "Today",
   props: {
     city: String,
-    weather: String,
-    temperature: Number,
+    todayWeather: String,
+    todayTemp: Number,
     latitude: Number,
     longitude: Number
   },
-  data: () => ({}),
-  methods: {},
-
   computed: {
     today() {
       return moment().format("dddd DD MMMM");
     },
-    weatherImg: function() {
-      return require(`../assets/${this.weather.toLowerCase()}.png`);
+    weatherImg() {
+      /*var weatherNow = this.todayWeather.map(v => v.toLowerCase()); */
+      var weatherNow = this.todayWeather.toLowerCase();
+
+      return require(`../assets/${weatherNow}.png`);
     }
   }
 };

@@ -2,8 +2,8 @@
   <div class="home">
     <Today
       :city="city"
-      :temperature="temperature"
-      :weather="weather"
+      :todayTemp="todayTemp"
+      :todayWeather="todayWeather"
       :latitude="latitude"
       :longitude="longitude"
     />
@@ -24,10 +24,12 @@ export default {
   },
   data: () => ({
     city: "",
+    todayTemp: 0,
     temperature: [],
     latitude: 0,
     longitude: 0,
-    weather: ""
+    todayWeather: "",
+    weather: []
   }),
   methods: {
     getPosition() {
@@ -56,16 +58,20 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.temperature = [
-            Math.round(data.list[0].main.temp_max),
             Math.round(data.list[1].main.temp_max),
             Math.round(data.list[2].main.temp_max),
             Math.round(data.list[3].main.temp_max)
           ];
-          /* Changer momentjs dans forecast (pas de "aftertomorrow" ect) + v-for -- temperature : [] dans data */
+          this.todayTemp = Math.round(data.list[0].main.temp_max);
           this.city = data.city.name;
           this.latitude = data.latitude;
           this.longitude = data.longitude;
-          this.weather = data.list[1].weather[0].main;
+          this.todayWeather = data.list[0].weather[0].main;
+          this.weather = [
+            data.list[1].weather[0].main,
+            data.list[2].weather[0].main,
+            data.list[3].weather[0].main
+          ];
           console.log(data);
         });
     }

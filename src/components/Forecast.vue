@@ -7,52 +7,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ tomorrow }}</td>
-          <td>
-            <img src="../assets/clouds.png" alt="cloudy weather" />
-          </td>
-        </tr>
-        <!--   <tr>
-          <td>{{ aftertomorrow }}</td>
-          <td>
-            <img src="../assets/sun.png" alt="cloudy weather" />
-          </td>
-        </tr>
-        <tr>
-          <td>{{ nextaftertomorrow }}</td>
-          <td>
-            <img src="../assets/wind.png" alt="cloudy weather" />
-          </td>
-        </tr> -->
+        <ForecastDay :temperature="temperature" :weather="weather" />
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import moment from "moment";
+import ForecastDay from "@/components/ForecastDay.vue";
 export default {
   name: "Forecast",
-  props: {
-    temperature: Number
+  components: {
+    ForecastDay
   },
-  computed: {
-    tomorrow() {
-      return moment()
-        .add(1, "days")
-        .format("dddd DD");
-    },
-    aftertomorrow() {
-      return moment()
-        .add(2, "days")
-        .format("dddd DD");
-    },
-    nextaftertomorrow() {
-      return moment()
-        .add(3, "days")
-        .format("dddd DD");
-    }
+  props: {
+    temperature: [Array, Number],
+    weather: String
   }
 };
 </script>
