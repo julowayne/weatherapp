@@ -7,7 +7,7 @@
       :latitude="latitude"
       :longitude="longitude"
     />
-    <Forecast :temperature="temperature" />
+    <Forecast :weathers="weathers" />
   </div>
 </template>
 
@@ -25,11 +25,10 @@ export default {
   data: () => ({
     city: "",
     todayTemp: 0,
-    temperature: [],
     latitude: 0,
     longitude: 0,
     todayWeather: "",
-    weather: []
+    weathers: []
   }),
   methods: {
     getPosition() {
@@ -57,20 +56,24 @@ export default {
       )
         .then(response => response.json())
         .then(data => {
-          this.temperature = [
-            Math.round(data.list[1].main.temp_max),
-            Math.round(data.list[2].main.temp_max),
-            Math.round(data.list[3].main.temp_max)
-          ];
           this.todayTemp = Math.round(data.list[0].main.temp_max);
           this.city = data.city.name;
           this.latitude = data.latitude;
           this.longitude = data.longitude;
           this.todayWeather = data.list[0].weather[0].main;
-          this.weather = [
-            data.list[1].weather[0].main,
-            data.list[2].weather[0].main,
-            data.list[3].weather[0].main
+          this.weathers = [
+            {
+              condition: data.list[1].weather[0].main,
+              temperature: Math.round(data.list[1].main.temp_max)
+            },
+            {
+              condition: data.list[2].weather[0].main,
+              temperature: Math.round(data.list[2].main.temp_max)
+            },
+            {
+              condition: data.list[3].weather[0].main,
+              temperature: Math.round(data.list[3].main.temp_max)
+            }
           ];
           console.log(data);
         });

@@ -7,7 +7,11 @@
         </tr>
       </thead>
       <tbody>
-        <ForecastDay :temperature="temperature" :weather="weather" />
+        <ForecastDay
+          v-for="(weather, index) in weathers"
+          :key="index"
+          :weather="weather"
+        />
       </tbody>
     </table>
   </div>
@@ -15,14 +19,14 @@
 
 <script>
 import ForecastDay from "@/components/ForecastDay.vue";
+
 export default {
   name: "Forecast",
   components: {
     ForecastDay
   },
   props: {
-    temperature: [Array, Number],
-    weather: String
+    weathers: Array
   }
 };
 </script>
@@ -35,23 +39,18 @@ export default {
   justify-content: center;
   align-items: center;
   table {
+    text-align: left;
+    border-collapse: collapse;
+    width: 85vw;
     tr {
       th {
         padding: 1.5em;
         text-align: center;
       }
     }
-    text-align: left;
-    border-collapse: collapse;
-    tr,
-    td {
-      text-align: center;
-      padding: 0.5em;
-    }
     tr + tr {
       margin-bottom: 20px;
     }
-    width: 85vw;
   }
 }
 </style>
