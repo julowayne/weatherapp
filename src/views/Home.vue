@@ -32,14 +32,14 @@ export default {
   }),
   methods: {
     getPosition() {
-      var options = {
+      const options = {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0
       };
 
-      var success = pos => {
-        var crd = pos.coords;
+      const success = pos => {
+        const crd = pos.coords;
         this.latitude = crd.latitude;
         this.longitude = crd.longitude;
         this.fetchData();
@@ -63,16 +63,19 @@ export default {
           this.todayWeather = data.list[0].weather[0].main;
           this.weathers = [
             {
-              condition: data.list[1].weather[0].main,
-              temperature: Math.round(data.list[1].main.temp_max)
+              day: data.list[11].dt_txt,
+              condition: data.list[11].weather[0].main,
+              temperature: Math.round(data.list[9].main.temp_max)
             },
             {
-              condition: data.list[2].weather[0].main,
-              temperature: Math.round(data.list[2].main.temp_max)
+              day: data.list[19].dt_txt,
+              condition: data.list[19].weather[0].main,
+              temperature: Math.round(data.list[17].main.temp_max)
             },
             {
-              condition: data.list[3].weather[0].main,
-              temperature: Math.round(data.list[3].main.temp_max)
+              day: data.list[27].dt_txt,
+              condition: data.list[27].weather[0].main,
+              temperature: Math.round(data.list[27].main.temp_max)
             }
           ];
           console.log(data);

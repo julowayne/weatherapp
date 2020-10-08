@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import moment from "moment";
+import dayjs from "dayjs";
+
 export default {
   name: "Today",
   props: {
@@ -28,11 +29,10 @@ export default {
   },
   computed: {
     today() {
-      return moment().format("dddd DD MMMM");
+      return dayjs().format("dddd DD MMMM");
     },
     weatherImg() {
-      /*var weatherNow = this.todayWeather.map(v => v.toLowerCase()); */
-      var weatherNow = this.todayWeather.toLowerCase();
+      const weatherNow = this.todayWeather.toLowerCase();
 
       return require(`../assets/${weatherNow}.png`);
     }
