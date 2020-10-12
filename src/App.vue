@@ -6,7 +6,7 @@
           <img src="../src/assets/open-menu1.png" alt="burger menu" />
         </a>
       </div>
-      <div id="title">City Name</div>
+      <div id="title"><router-link to="/graphic">graphic</router-link></div>
     </header>
     <router-view />
   </div>
@@ -14,6 +14,7 @@
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 body {
   margin: 0;
 }
