@@ -63,17 +63,17 @@ export default {
           this.todayWeather = data.list[0].weather[0].main;
           this.weathers = [
             {
-              day: data.list[11].dt_txt,
+              day: data.list[3].dt_txt,
               condition: data.list[11].weather[0].main,
               temperature: Math.round(data.list[9].main.temp_max)
             },
             {
-              day: data.list[19].dt_txt,
+              day: data.list[11].dt_txt,
               condition: data.list[19].weather[0].main,
               temperature: Math.round(data.list[17].main.temp_max)
             },
             {
-              day: data.list[27].dt_txt,
+              day: data.list[19].dt_txt,
               condition: data.list[27].weather[0].main,
               temperature: Math.round(data.list[27].main.temp_max)
             }
