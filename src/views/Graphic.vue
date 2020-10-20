@@ -1,5 +1,9 @@
 <template>
-  <ForecastGraphic :weathers="weathers" :days="days" />
+  <ForecastGraphic
+    v-if="weathers.length && days.length"
+    :weathers="weathers"
+    :days="days"
+  />
 </template>
 
 <script>
@@ -48,20 +52,10 @@ export default {
             Math.round(data.list[27].main.temp_max)
           ];
           this.days = [
-            /*    {
-              daylabel: data.list[3].dt_txt
-            },
-            {
-              daylabel: data.list[11].dt_txt
-            },
-            {
-              daylabel: data.list[19].dt_txt
-            } */
             data.list[3].dt_txt,
             data.list[11].dt_txt,
             data.list[19].dt_txt
           ];
-          console.log(this.weathers);
         });
     }
   },
