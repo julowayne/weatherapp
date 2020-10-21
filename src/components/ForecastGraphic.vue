@@ -81,7 +81,7 @@ export default {
 
 <style lang="scss" scoped>
 .graphics {
-  height: 85vh;
+  height: 95vh;
   h1 {
     display: flex;
     justify-content: center;

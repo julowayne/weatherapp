@@ -2,11 +2,13 @@
   <div id="app">
     <header>
       <div id="burger">
-        <a href>
-          <img src="../src/assets/open-menu1.png" alt="burger menu" />
-        </a>
+        <router-link to="/" active-class="active">Weatherpls</router-link>
       </div>
-      <div id="title"><router-link to="/graphic">graphic</router-link></div>
+      <div id="title">
+        <router-link to="/graphic"
+          ><img src="../src/assets/bar-chart.png" alt="graphic-logo"
+        /></router-link>
+      </div>
     </header>
     <router-view />
   </div>
@@ -39,6 +41,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    font-size: x-large;
+    .active {
+      color: white;
+      text-decoration: none;
+    }
   }
   #title {
     font-weight: bold;
