@@ -4,6 +4,15 @@
       <div id="burger">
         <router-link to="/" active-class="active">Weatherpls</router-link>
       </div>
+      <div id="search">
+        <input
+          type="text"
+          placeholder="Search..."
+          id="research"
+          v-model="query"
+          @keyup.enter="search"
+        />
+      </div>
       <div id="title">
         <router-link to="/graphic"
           ><img src="../src/assets/bar-chart.png" alt="graphic-logo"
@@ -13,7 +22,18 @@
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  data: () => ({
+    query: ""
+  }),
+  methods: {
+    search() {
+      this.$router.push({ path: "/search", query: { city: `${this.query}` } });
+    }
+  }
+};
+</script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
@@ -37,12 +57,28 @@ header {
   justify-content: space-between;
   height: 10vh;
   margin: 0 1.5em;
+  .active {
+    color: white;
+    text-decoration: none;
+  }
   #burger {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     font-size: x-large;
-    .active {
+  }
+  #search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #research {
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 4px;
+      color: white;
+      width: 60%;
+      height: 30%;
+    }
+    .blabla {
       color: white;
       text-decoration: none;
     }

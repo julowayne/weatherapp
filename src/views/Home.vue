@@ -78,7 +78,6 @@ export default {
               temperature: Math.round(data.list[27].main.temp_max)
             }
           ];
-          console.log(data);
         });
     }
   },

@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Graphic from "../views/Graphic.vue";
+import Search from "@/components/Search.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/graphic",
     name: "Graphic",
     component: Graphic
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search
   }
 ];
 
